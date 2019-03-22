@@ -24,11 +24,11 @@ script_steps: # loading页到定位页跳转显示
    test_action: pixel_compare                                  #程序开启像素比较，30s超时
    data:
     locations: #坐标值列表
-      -  [248, 809]
-      -  [1423, 443]
+      -  [1388, 420]
+      -  [858, 235]
     rgbs:  #与坐标对应的rgb值列表
-      -  (40, 74, 73)
-      -  (31, 46, 56)
+      -  (235, 235, 235)
+      -  (21, 38, 168)
   -
    test_desc: 命令行强行停止应用
    test_action: outside_launch                                 #通过命令行调用

@@ -18,6 +18,7 @@ script_steps:
     test_action: outside_launch  #通过命令行调用
     data: am start  com.tcl.vod/am start  com.tcl.vod/com.tcl.vod.videosort.VodSortActivity #程序入口
     expectation: VodSortActivity   #可选操作，检测activity 名称，此字段不写默认调起成功
+    test_sleep: 300
   -
     test_desc: 比较像素
     test_action: pixel_compare   #程序开启像素比较，30s超时

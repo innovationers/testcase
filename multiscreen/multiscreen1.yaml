@@ -1,0 +1,33 @@
+---
+settings:
+    package_name: com.tcl.MultiScreenInteraction_TV  #被测应用的包名
+    retry_times: 0                 #脚本失败重试测试
+    default_test_sleep: 1000
+script_steps:
+  -
+    test_desc: 打开截图开关             #当前步骤描述
+    test_action: start_image_stream  #打开采集器视频流检测开关,必须在图片比对操作前打开
+    data: 20000                       #采集器图片采集时间，单位毫秒
+  -
+    test_desc: 命令行进入应用程序
+    test_action: outside_launch  #通过命令行调用
+    data: am start com.tcl.MultiScreenInteraction_TV/com.tcl.multiscreeninteractiontv.MainActivity #程序入口
+    optional: True
+    tag: key1
+  -
+    test_desc: abcd
+    test_action: pixel_compare   #程序开启像素比较，30s超时
+    data:
+     locations: #坐标值列表
+       -  [863, 447]
+       -  [1048, 486]
+     rgbs:  #与坐标对应的rgb值列表
+       -  (231, 44, 39)
+       -  (221, 219, 241)
+     compare_type: 1        #正向比较，坐标点的rgb值一致算通过
+    tag: key2
+  -
+    test_desc: 计算时间
+    test_action: compute   #时间计算
+    data: key2-key1
+    expectation: 20000      #期望像素比对获取的结果值

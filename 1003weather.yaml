@@ -1,0 +1,73 @@
+---
+settings:
+    package_name: com.tcl.common.weather                        #被测应用的包名
+    retry_times: 0                                              #脚本失败重试测试
+script_steps:
+  # loading页到定位页跳转显示
+  -
+   test_desc: 打开截图开关
+   test_action: start_image_stream                                 #通过命令行调用
+   data: 20000         #10s
+
+
+  # loading页到首页的显示
+  -
+   test_desc: 命令行进入应用程序
+   test_action: outside_launch                                 #通过命令行调用
+   data: am start com.tcl.common.weather/.activity.WeatherActivity         #程序入口
+   expectation: WeatherActivity                                   #可选操作，检测activity 名称，此字段不写默认调起成功
+   test_sleep: 2000     
+
+  # 天气详情的显示速度
+  -
+   test_desc: 按下键
+   test_action: send_key_event  #发送遥控器按键
+   data: down                   #键值
+   test_sleep: 10               #键值当前操作结束后等待时间
+   tag: key3
+  -
+   test_desc: 显示天气详情的像素比较
+   test_action: pixel_compare                                  #程序开启像素比较，30s超时
+   data:
+    locations: #坐标值列表
+      -  [90, 850]
+      -  [85, 990]
+    rgbs:  #与坐标对应的rgb值列表
+     -  (235, 235, 237)
+     -  (227, 232, 228)
+   expectation: 3000      #期望像素比对获取的结果值
+   tag: key4
+   test_sleep: 10     
+  # 天气详情的隐藏速度
+  -
+   test_desc: 按上键
+   test_action: send_key_event  #发送遥控器按键
+   data: up                   #键值
+   test_sleep: 0               #键值当前操作结束后等待时间
+   tag: key5
+  -
+   test_desc: 显示天气详情的像素比较
+   test_action: pixel_compare                                  #程序开启像素比较，30s超时
+   data:
+    locations: #坐标值列表
+      -  [1361, 55]
+      -  [88, 1031]
+    rgbs:  #与坐标对应的rgb值列表
+      -  (204, 115, 49)
+      -  (235, 235, 235)
+   expectation: 3000      #期望像素比对获取的结果值
+   tag: key6
+   test_sleep: 10     
+  -
+   test_desc: 计算时间
+   test_action: compute   #时间计算
+   data: key4-key3
+   expectation: 20000      #期望像素比对获取的结果值     
+   test_sleep: 10     
+  -
+   test_desc: 计算时间
+   test_action: compute   #时间计算
+   data: key6-key5
+   expectation: 20000      #期望像素比对获取的结果值     
+
+

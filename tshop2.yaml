@@ -1,0 +1,34 @@
+---
+settings:
+    package_name: com.tcl.tshop
+    retry_times: 0
+    default_test_sleep: 1000
+script_steps:
+  -
+    test_desc: 截图开始
+    test_action: start_image_stream
+    data: 10000  #启动截图，持续时间
+  -
+    test_desc: 打开T惠购主页
+    test_action: outside_launch
+    data: am start -n com.tcl.tshop/.activitys.WelcomeActivity -a 'com.tcl.tshop.action.START'
+    optional: True
+    tag: key1
+  -
+    test_desc: 对比像素点
+    test_action: pixel_compare
+    data:
+     locations: #坐标值列表
+       -  [671, 169]
+       -  [1642, 167]
+     rgbs:  #与坐标对应的rgb值列表
+       -  (255, 255, 255)
+       -  (255, 255, 255)
+     compare_type: 1   #正向比较，坐标点的rgb值一致算通过
+    tag: key2
+       
+  -
+    test_desc: 计算时间
+    test_action: compute   #时间计算
+    data: key2-key1
+    expectation: 10000      #期望像素比对获取的结果值

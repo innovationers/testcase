@@ -1,0 +1,36 @@
+---
+settings:
+    package_name: com.tcl.tshop
+    retry_times: 0
+    default_test_sleep: 1000
+script_steps:
+  -
+    test_desc: 进入T惠购主页后，焦点在第一个运营时运行此脚本移动焦点
+    test_action: send_key_event
+    data: left
+    optional: True
+    tag: key1
+    test_sleep: 200
+  -
+    test_desc: 截图开始
+    test_action: start_image_stream
+    data: 10000  #启动截图，持续时间
+    test_sleep: 0
+  -
+    test_desc: 对比像素点
+    test_action: pixel_compare
+    data:
+     locations: #坐标值列表
+       -  [304, 495]
+       -  [916, 510]
+     rgbs:  #与坐标对应的rgb值列表
+       -  (16, 16, 16)
+       -  (16, 16, 16)
+     compare_type: 0   #反向比较
+    tag: key2
+       
+  -
+    test_desc: 计算时间
+    test_action: compute   #时间计算
+    data: key2-key1
+    expectation: 1000      #期望像素比对获取的结果值

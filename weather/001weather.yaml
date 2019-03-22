@@ -1,0 +1,35 @@
+---
+settings:
+    package_name: com.tcl.common.weather                        #被测应用的包名
+    retry_times: 0                                              #脚本失败重试测试
+script_steps:
+  # loading页到定位页跳转显示
+  -
+   test_desc: 打开截图开关
+   test_action: start_image_stream                                 #通过命令行调用
+   data: 20000         #10s
+   
+  -
+   test_desc: 命令行强行停止应用
+   test_action: outside_launch                                 #通过命令行调用
+   data: am force-stop com.tcl.common.weather         #强行停止应用
+   test_sleep: 0 
+  -
+   test_desc: 命令行进入应用程序
+   test_action: outside_launch                                 #通过命令行调用
+   data: am start com.tcl.common.weather/com.tcl.common.weather.activity.FirstActivity         #程序入口FirstActivity
+  -
+   test_desc: 打开的页面时间
+   test_action: pixel_compare                                  #程序开启像素比较，30s超时
+   data:
+    locations: #坐标值列表
+      -  [451, 538]
+      -  [1683, 715]
+    rgbs:  #与坐标对应的rgb值列表
+     -  (32, 46, 57)
+     -  (42, 73, 75)
+   expectation: 3000      #期望像素比对获取的结果值
+
+ 
+
+

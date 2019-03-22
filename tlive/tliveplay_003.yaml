@@ -1,0 +1,55 @@
+---
+settings:
+    package_name: com.tcl.tliveplay  #被测应用的包名
+    retry_times: 0                 #脚本失败重试测试
+script_steps:
+  -
+    test_desc: 命令行强行停止应用
+    test_action: outside_launch                   #通过命令行调用
+    data: am force-stop com.tcl.tliveplay         #强行停止应用
+    test_sleep: 0    
+  -
+    test_desc: 命令行进入应用程序
+    test_action: outside_launch  #通过命令行调用
+    data: am start com.tcl.tliveplay/com.tcl.tliveplay.activitys.MainActivity #程序入口
+    test_sleep: 500              #键值当前操作结束后等待时间
+  -
+    test_desc: 打开采集器视频流          #当前步骤描述
+    test_action: start_image_stream  #打开采集器视频流检测开关,必须在图片比对操作前打开
+    data: 10000                       #采集器图片采集时间，单位毫秒 
+    test_sleep: 100              #键值当前操作结束后等待时间
+  -
+    test_desc: 下键
+    test_action: send_key_event  #发送遥控器按键
+    data: down                  #键值
+    test_sleep: 10              #键值当前操作结束后等待时间    
+  -
+    test_desc: 找到加载页面坐标和颜色
+    test_action: pixel_compare   #程序开启像素比较，30s超时
+    data:
+     locations: #坐标值列表
+       -  [683, 874]
+       -  [1051, 863]
+       # -  [1239, 869]
+     rgbs:  #与坐标对应的rgb值列表
+       -  (234, 234, 236)
+       -  (233, 235, 237)
+       # -  (239, 239, 239)
+    expectation: 5000      #期望像素比对获取的结果值，单位毫秒    
+    tag: key1
+  -
+    test_desc: 找到播放页面坐标和颜色
+    test_action: pixel_compare   #程序开启像素比较，30s超时
+    data:
+     locations: #坐标值列表
+       -  [1617, 585]
+     rgbs:  #与坐标对应的rgb值列表
+       -  (16, 16, 16)
+     compare_type: 0
+    expectation: 5000      #期望像素比对获取的结果值，单位毫秒    
+    tag: key2     
+  -
+   test_desc: 计算时间
+   test_action: compute   #时间计算
+   data: key2-key1
+   expectation: 1000      #期望像素比对获取的结果值

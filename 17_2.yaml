@@ -12,7 +12,7 @@ script_steps: # loading页到定位页跳转显示
   -
    test_desc: 命令行进入应用程序
    test_action: outside_launch                                 #通过命令行调用
-   data: am start com.tcl.usercenter/.WelcomActivity         #程序入口
+   data: am start -n com.tcl.usercenter/.WelcomActivity         #程序入口
    test_sleep: 2000              #键值当前操作结束后等待时间
   -
    test_desc: 下键
@@ -52,7 +52,7 @@ script_steps: # loading页到定位页跳转显示
   -
    test_desc: 打开截图开关
    test_action: start_image_stream                                 #通过命令行调用
-   data: 20000         #10s
+   data: 10000         #10s
    test_sleep: 500 
   -
    test_desc: 命令行进入应用程序
@@ -64,11 +64,11 @@ script_steps: # loading页到定位页跳转显示
    test_action: pixel_compare                                  #程序开启像素比较，30s超时
    data:
     locations: #坐标值列表
-      -  [248, 809]
-      -  [1423, 443]
+      -  [581, 412]
+      -  [958, 292]
     rgbs:  #与坐标对应的rgb值列表
-      -  (40, 74, 73)
-      -  (31, 46, 56)
+      -  (24, 46, 210)
+      -  (167, 170, 179)
   -
    test_desc: 命令行强行停止应用
    test_action: outside_launch                                 #通过命令行调用

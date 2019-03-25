@@ -18,6 +18,21 @@ script_steps:
   -
     test_desc: 右键
     test_action: send_key_event  #发送遥控器按键
+    data: up                    #键值
+    test_sleep: 1000               #键值当前操作结束后等待时间
+  -
+    test_desc: ok键
+    test_action: send_key_event  #发送遥控器按键
+    data: ok                    #键值
+    test_sleep: 1000               #键值当前操作结束后等待时间
+  -
+    test_desc: 右键
+    test_action: send_key_event  #发送遥控器按键
+    data: right                    #键值
+    test_sleep: 1000               #键值当前操作结束后等待时间
+  -
+    test_desc: 右键
+    test_action: send_key_event  #发送遥控器按键
     data: right                    #键值
     test_sleep: 1000               #键值当前操作结束后等待时间
   -
@@ -35,11 +50,9 @@ script_steps:
     test_action: pixel_compare   #程序开启像素比较，30s超时
     data:
      locations: #坐标值列表
-       -  [1073, 570]
-       -  [1092, 571]
+       -  [546, 98]
      rgbs:  #与坐标对应的rgb值列表
-       -  (255, 254, 255)
-       -  (237, 236, 241)
+       -  (243, 238, 182)
     expectation: 5000      #期望像素比对获取的结果值，单位毫秒
     tag: time2
   -

@@ -16,9 +16,14 @@ script_steps:
     expectation: VodSortActivity   #可选操作，检测activity 名称，此字段不写默认调起成功
     test_sleep: 300
   -
-    test_desc: 右键
+    test_desc: 上键
     test_action: send_key_event  #发送遥控器按键
-    data: right                    #键值
+    data: up                    #键值
+    test_sleep: 1000               #键值当前操作结束后等待时间
+  -
+    test_desc: 上键
+    test_action: send_key_event  #发送遥控器按键
+    data: up                    #键值
     test_sleep: 1000               #键值当前操作结束后等待时间
   -
     test_desc: 打开采集器视频流检测  #当前步骤描述
@@ -29,17 +34,25 @@ script_steps:
     test_action: send_key_event  #发送遥控器按键
     data: ok                    #键值
     test_sleep: 1000               #键值当前操作结束后等待时间
+  -
+    test_desc: ok键
+    test_action: send_key_event  #发送遥控器按键
+    data: ok                    #键值
+    test_sleep: 1000               #键值当前操作结束后等待时间
+  -
+    test_desc: 向上键
+    test_action: send_key_event  #发送遥控器按键
+    data: up                    #键值
+    test_sleep: 1000               #键值当前操作结束后等待时间
     tag: time1
   -
     test_desc: 比较像素
     test_action: pixel_compare   #程序开启像素比较，30s超时
     data:
      locations: #坐标值列表
-       -  [1073, 570]
-       -  [1092, 571]
+       -  [625, 76]
      rgbs:  #与坐标对应的rgb值列表
-       -  (255, 254, 255)
-       -  (237, 236, 241)
+       -  (245, 246, 250)
     expectation: 5000      #期望像素比对获取的结果值，单位毫秒
     tag: time2
   -

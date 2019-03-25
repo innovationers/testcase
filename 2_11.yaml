@@ -24,19 +24,34 @@ script_steps:
     data: ok                    #键值
     test_sleep: 2000              #键值当前操作结束后等待时间
   -
-    test_desc: 按13次右键
+    test_desc: 按7次右键
     test_action: send_key_event  #发送遥控器按键
     data: right                    #键值
     test_sleep: 1000              #键值当前操作结束后等待时间
-    num: 20
+    num: 7
+  -
+    test_desc: 按下键
+    test_action: send_key_event  #发送遥控器按键
+    data: down                    #键值
+    test_sleep: 1000              #键值当前操作结束后等待时间
+  -
+    test_desc: 右键
+    test_action: send_key_event  #发送遥控器按键
+    data: right                    #键值
+    test_sleep: 1000              #键值当前操作结束后等待时间
+  -
+    test_desc: ok键，进入VOD影片详情
+    test_action: send_key_event  #发送遥控器按键
+    data: ok                    #键值
+    test_sleep: 2000              #键值当前操作结束后等待时间
   -
     test_desc: 打开采集器视频流检测  #当前步骤描述
     test_action: start_image_stream  #打开采集器视频流检测开关,必须在图片比对操作前打开
     data: 10000 
   -
-    test_desc: 输入ok
+    test_desc: back键
     test_action: send_key_event  #发送遥控器按键
-    data: ok                    #键值
+    data: back                    #键值
     test_sleep: 0              #键值当前操作结束后等待时间
   -
     test_desc: 比较像素

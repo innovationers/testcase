@@ -1,0 +1,44 @@
+---
+settings:
+    package_name: com.android.tcl.messagebox                        #被测应用的包名
+    retry_times: 0                                              #脚本失败重试测试
+    default_test_sleep: 1000
+script_steps: # loading页到定位页跳转显示
+  -
+   test_desc: 清除数据
+   test_action: outside_launch                                 #通过命令行调用
+   data: tclsu&pm clear com.android.tcl.messagebox&cp /system/etc/Messages.db /data/data/com.tcl.c2dm.client/databases/Messages.db         #清除应用数据
+   test_sleep: 500 
+  -
+   test_desc: 打开截图开关
+   test_action: start_image_stream                                 #通过命令行调用
+   data: 10000         #10s
+   test_sleep: 500 
+  -
+   test_desc: 命令行进入应用程序
+   test_action: outside_launch                                 #通过命令行调用
+   data: am start -n com.android.tcl.messagebox/.MainActivity         #程序入口
+   test_sleep: 0 
+  -
+   test_desc: 按下键
+   test_action: send_key_event  #发送遥控器按键
+   data: down                   #键值
+  -
+   test_desc: 按下键
+   test_action: send_key_event  #发送遥控器按键
+   data: down                   #键值
+  -
+   test_desc: 按ok键
+   test_action: send_key_event  #发送遥控器按键
+   data: ok                   #键值
+   test_sleep: 0               #键值当前操作结束后等待时间
+  -
+   test_desc: 打开的页面时间
+   test_action: pixel_compare                                  #程序开启像素比较，30s超时
+   data:
+    locations: #坐标值列表
+      -  [903, 557]
+      -  [903, 557]
+    rgbs:  #与坐标对应的rgb值列表
+      -  (200, 10, 10)
+      -  (200, 10, 10)

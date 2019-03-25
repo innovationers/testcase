@@ -1,0 +1,58 @@
+---
+settings:
+    package_name: com.thunder.liveplay                        #被测应用的包名
+    retry_times: 0                                              #脚本失败重试测试
+    default_test_sleep: 1000
+script_steps: # loading页到定位页跳转显示
+  -
+   test_desc: 清除数据
+   test_action: outside_launch                                 #通过命令行调用
+   data: pm clear com.thunder.liveplay         #清除应用数据
+   test_sleep: 500 
+  -
+   test_desc: 命令行进入应用程序
+   test_action: outside_launch                                 #通过命令行调用
+   data: am start -n com.thunder.liveplay/.LiveActivity         #程序入口
+   test_sleep: 10000 
+  -
+   test_desc: 打开截图开关
+   test_action: start_image_stream                                 #通过命令行调用
+   data: 10000         #10s
+   test_sleep: 500 
+  -
+   test_desc: 按上键切台
+   test_action: send_key_event  #发送遥控器按键
+   data: up                   #键值
+   test_sleep: 0               #键值当前操作结束后等待时间
+   tag: key1
+  -
+   test_desc: 打开的页面时间
+   test_action: pixel_compare                                  #程序开启像素比较，30s超时
+   data:
+    locations: #坐标值列表
+      -  [1775, 170]
+      -  [1400, 127]
+      -  [1445, 119]
+    rgbs:  #与坐标对应的rgb值列表
+      -  (16, 16, 16)
+      -  (230, 230, 240)
+      -  (117, 3, 11)
+  -
+   test_desc: 打开的页面时间
+   test_action: pixel_compare                                  #程序开启像素比较，30s超时
+   data:
+    locations: #坐标值列表
+      -  [901, 216]
+      -  [1089, 421]
+    rgbs:  #与坐标对应的rgb值列表
+      -  (255, 228, 72)
+      -  (75, 51, 27)
+    compare_type: 0
+   tag: key2
+  -
+   test_desc: 计算时间
+   test_action: compute   #时间计算
+   data: key2-key1
+   expectation: 5000      #期望像素比对获取的结果值         
+
+

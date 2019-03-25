@@ -32,7 +32,9 @@ script_steps:
     test_action: pixel_compare   #程序开启像素比较，30s超时
     data:
      locations: #坐标值列表
-       -  [700, 377]
+       -  [129, 365]
+       -  [178, 340]
      rgbs:  #与坐标对应的rgb值列表
-       -  (167, 165, 180)
+       -  (214, 82, 0)
+       -  (154, 28, 6)
     expectation: 3000      #期望像素比对获取的结果值，单位毫秒

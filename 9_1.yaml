@@ -34,8 +34,10 @@ script_steps: # loading页到定位页跳转显示
    data:
     locations: #坐标值列表
       -  [1775, 170]
+      -  [1775, 170]
     rgbs:  #与坐标对应的rgb值列表
       -  (16, 16, 16)
+      -  (16, 16, 18)
     compare_type: 0
    tag: key2
   -

@@ -1,24 +1,20 @@
----
-settings:
-    package_name:  com.tcl.vod  #被测应用的包名
-    retry_times: 0                 #脚本失败重试测试
-    default_test_sleep: 1000
-script_steps:
+# testcase
+
+### 1.撰写测试用例注意事项
+
+#### 1.1 延迟时间问题
+
+1.在每次发送按键后，如果会打开新页面，需要延迟2s-3s再进行下一步的动作，否则可能页面没有打开就发送按键，导致无法响应响应事件。
+```yaml
   -
-    test_desc: 命令行强行停止应用
-    test_action: outside_launch                   #通过命令行调用
-    data: am force-stop com.tcl.vod         #强行停止应用
-    test_sleep: 300
+    test_desc: ok键
+    test_action: send_key_event  #发送遥控器按键，打开新的播放页面
+    data: ok                    #键值
+    test_sleep: 2000               #键值当前操作结束后等待时间,新开页面之前的动作需要延时
   -
-    test_desc: 命令行进入vod列表,打开列表页 #打开页面需要延迟较长时间
-    test_action: outside_launch  #通过命令行调用
-    data: am start -a com.tcl.vod.action.videosort --es channe_id movie --es channe_name MOIVE #程序入口
-    test_sleep: 2000
-  -
-    test_desc: 右键
-    test_action: send_key_event  #发送遥控器按键
-    data: right                    #键值
-    test_sleep: 1000               #键值当前操作结束后等待时间
+```
+2.打开视频采集，最好放在需要马上进行的关键测试点的位置，避免采集太多无用图片，比如:
+```yaml
   -
     test_desc: ok键
     test_action: send_key_event  #发送遥控器按键
@@ -50,11 +46,4 @@ script_steps:
        -  (239, 238, 243)
     tag: time2
   -
-    test_desc: 计算时间
-    test_action: compute   #时间计算
-    data: time2-time1
-  -
-    test_desc: 命令行强行停止应用
-    test_action: outside_launch                   #通过命令行调用
-    data: am force-stop  com.tcl.vod         #强行停止应用
-    test_sleep: 300
+```

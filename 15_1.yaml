@@ -22,8 +22,8 @@ script_steps:
     test_desc: 命令行进入VOD列表页
     test_action: outside_launch  #通过命令行调用
     data: am start -a com.tcl.vod.action.videosort --es channe_id movie --es channe_name MOIVE #程序入口
-    tag: time1
     test_sleep: 2000               #键值当前操作结束后等待时间
+    tag: time1
   -
     test_desc: 比较像素
     test_action: pixel_compare   #程序开启像素比较，30s超时
@@ -32,13 +32,12 @@ script_steps:
        -  [98, 474]
      rgbs:  #与坐标对应的rgb值列表
        -  (0, 111, 255)
-    expectation: 5000      #期望像素比对获取的结果值，单位毫秒
     tag: time2
   -
     test_desc: 计算时间
     test_action: compute   #时间计算
     data: time2-time1
-    expectation: 5000      #期望像素比对获取的结果值       
+    expectation: 30000      #期望像素比对获取的结果值       
   -
     test_desc: 命令行强行停止应用
     test_action: outside_launch                   #通过命令行调用

@@ -10,20 +10,23 @@ script_steps: # loading页到定位页跳转显示
    data: pm clear com.thunder.liveplay         #清除应用数据
    test_sleep: 500 
   -
-   test_desc: 命令行进入应用程序
-   test_action: outside_launch                                 #通过命令行调用
-   data: am start -n com.thunder.liveplay/.LiveActivity         #程序入口
-   test_sleep: 10000 
-  -
    test_desc: 打开截图开关
    test_action: start_image_stream                                 #通过命令行调用
    data: 10000         #10s
    test_sleep: 500 
   -
-   test_desc: 按上键切台
-   test_action: send_key_event  #发送遥控器按键
-   data: up                   #键值
-   test_sleep: 0               #键值当前操作结束后等待时间
+   test_desc: 命令行进入应用程序
+   test_action: outside_launch                                 #通过命令行调用
+   data: am start -n com.thunder.liveplay/.LiveActivity         #程序入口
+   test_sleep: 0 
+  -
+   test_desc: 打开的页面时间
+   test_action: pixel_compare                                  #程序开启像素比较，30s超时
+   data:
+    locations: #坐标值列表
+      -  [903, 557]
+    rgbs:  #与坐标对应的rgb值列表
+      -  (200, 10, 10)
    tag: key1
   -
    test_desc: 打开的页面时间
@@ -31,28 +34,16 @@ script_steps: # loading页到定位页跳转显示
    data:
     locations: #坐标值列表
       -  [1775, 170]
-      -  [1400, 127]
-      -  [165, 111]
+      -  [1775, 170]
     rgbs:  #与坐标对应的rgb值列表
       -  (16, 16, 16)
-      -  (230, 230, 240)
-      -  (16, 16, 16)
-  -
-   test_desc: 打开的页面时间
-   test_action: pixel_compare                                  #程序开启像素比较，30s超时
-   data:
-    locations: #坐标值列表
-      -  [588, 420]
-      -  [1018, 561]
-    rgbs:  #与坐标对应的rgb值列表
-      -  (16, 16, 16)
-      -  (221, 2, 0)
+      -  (16, 16, 18)
     compare_type: 0
    tag: key2
   -
    test_desc: 计算时间
    test_action: compute   #时间计算
    data: key2-key1
-   expectation: 5000      #期望像素比对获取的结果值         
+   expectation: 50000      #期望像素比对获取的结果值         
 
 

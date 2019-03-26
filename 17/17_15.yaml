@@ -45,30 +45,45 @@ script_steps: # loading页到定位页跳转显示
    data: ok                  #键值
    test_sleep: 5000              #键值当前操作结束后等待时间
   -
-   test_desc: 命令行强行停止应用
-   test_action: outside_launch                                 #通过命令行调用
-   data: am force-stop com.tcl.usercenter         #强行停止应用
-   test_sleep: 500 
+   test_desc: ok键
+   test_action: send_key_event  #发送遥控器按键
+   data: ok                  #键值
+   test_sleep: 2000              #键值当前操作结束后等待时间
+  -
+   test_desc: 下键
+   test_action: send_key_event  #发送遥控器按键
+   data: down                  #键值
+   test_sleep: 100              #键值当前操作结束后等待时间
+  -
+   test_desc: ok键
+   test_action: send_key_event  #发送遥控器按键
+   data: ok                  #键值
+   test_sleep: 2000              #键值当前操作结束后等待时间
+  -
+   test_desc: 左键
+   test_action: send_key_event  #发送遥控器按键
+   data: left                  #键值
+   test_sleep: 100              #键值当前操作结束后等待时间
   -
    test_desc: 打开截图开关
    test_action: start_image_stream                                 #通过命令行调用
    data: 10000         #10s
    test_sleep: 500 
   -
-   test_desc: 命令行进入应用程序
-   test_action: outside_launch                                 #通过命令行调用
-   data: am start com.tcl.usercenter/.WelcomActivity         #程序入口
-   test_sleep: 0 
+   test_desc: ok键
+   test_action: send_key_event  #发送遥控器按键
+   data: ok                  #键值
+   test_sleep: 0              #键值当前操作结束后等待时间
   -
    test_desc: 打开的页面时间
    test_action: pixel_compare                                  #程序开启像素比较，30s超时
    data:
     locations: #坐标值列表
-      -  [581, 412]
-      -  [840, 247]
+      -  [805, 527]
+      -  [805, 459]
     rgbs:  #与坐标对应的rgb值列表
-      -  (24, 46, 210)
-      -  (20, 23, 42)
+      -  (158, 158, 158)
+      -  (91, 91, 91)
   -
    test_desc: 命令行强行停止应用
    test_action: outside_launch                                 #通过命令行调用

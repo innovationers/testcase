@@ -1,0 +1,39 @@
+---
+settings:
+    package_name: com.tcl.usercenter                        #被测应用的包名
+    retry_times: 0                                              #脚本失败重试测试
+    default_test_sleep: 1000
+script_steps: # loading页到定位页跳转显示
+  -
+   test_desc: 命令行强行停止应用
+   test_action: outside_launch                                 #通过命令行调用
+   data: pm clear com.tcl.usercenter         #清除应用数据
+   test_sleep: 500 
+  -
+   test_desc: 打开截图开关
+   test_action: start_image_stream                                 #通过命令行调用
+   data: 10000         #10s
+   test_sleep: 500 
+  -
+   test_desc: 命令行进入应用程序
+   test_action: outside_launch                                 #通过命令行调用
+   data: am start -n com.tcl.usercenter/.WelcomActivity         #程序入口
+   test_sleep: 0 
+  -
+   test_desc: 打开的页面时间
+   test_action: pixel_compare                                  #程序开启像素比较，30s超时
+   data:
+    locations: #坐标值列表
+      -  [436, 458]
+      -  [473, 439]
+    rgbs:  #与坐标对应的rgb值列表
+      -  (16, 16, 16)
+      -  (235, 235, 235)
+   test_sleep: 0 
+  -
+   test_desc: 命令行强行停止应用
+   test_action: outside_launch                                 #通过命令行调用
+   data: am force-stop com.tcl.usercenter         #强行停止应用
+   test_sleep: 0 
+
+

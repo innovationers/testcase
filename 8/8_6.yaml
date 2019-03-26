@@ -5,29 +5,39 @@ settings:
     default_test_sleep: 1000
 script_steps: # loading页到定位页跳转显示
   -
-   test_desc: 命令行强行停止应用
-   test_action: outside_launch                                 #通过命令行调用
-   data: am force-stop test.tcl.com.testandroid1         #强行停止应用
-   test_sleep: 100 
-  -
    test_desc: 命令行进入应用程序
    test_action: outside_launch                                 #通过命令行调用
-   data: am start -n test.tcl.com.testandroid1/.MainActivity         #程序入口
-   test_sleep: 0 
+   data: tclsu&am start com.tcl.tvweishi/.activity.StartActivity         #程序入口
+   test_sleep: 3000 
+  -
+   test_desc: 下键
+   test_action: send_key_event  #发送遥控器按键
+   data: down                  #键值
+   test_sleep: 100              #键值当前操作结束后等待时间
+  -
+   test_desc: 下键
+   test_action: send_key_event  #发送遥控器按键
+   data: down                  #键值
+   test_sleep: 100              #键值当前操作结束后等待时间
   -
    test_desc: 打开截图开关
    test_action: start_image_stream                                 #通过命令行调用
    data: 10000         #10s
    test_sleep: 500 
   -
+   test_desc: ok键
+   test_action: send_key_event  #发送遥控器按键
+   data: ok                  #键值
+   test_sleep: 0              #键值当前操作结束后等待时间
+  -
    test_desc: 打开的页面时间
    test_action: pixel_compare                                  #程序开启像素比较，30s超时
    data:
     locations: #坐标值列表
-      -  [737, 519]
-      -  [717, 523]
+      -  [172, 395]
+      -  [525, 206]
     rgbs:  #与坐标对应的rgb值列表
-      -  (100, 2, 1)
-      -  (221, 196, 202)
+      -  (161, 158, 175)
+      -  (249, 136, 32)
 
 

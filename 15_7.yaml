@@ -12,8 +12,7 @@ script_steps:
   -
     test_desc: 命令行进入vod列表,打开列表页
     test_action: outside_launch  #通过命令行调用
-    data: am start  com.tcl.vod/am start  com.tcl.vod/com.tcl.vod.videosort.VodSortActivity #程序入口
-    expectation: VodSortActivity   #可选操作，检测activity 名称，此字段不写默认调起成功
+    data: am start -a com.tcl.vod.action.videosort --es channe_id movie --es channe_name MOIVE #程序入口
     test_sleep: 300
   -
     test_desc: 打开采集器视频流检测  #当前步骤描述
@@ -23,7 +22,6 @@ script_steps:
     test_desc: 下键
     test_action: send_key_event  #发送遥控器按键
     data: down                    #键值
-    test_sleep: 1000               #键值当前操作结束后等待时间
     tag: time1
   -
     test_desc: 比较像素

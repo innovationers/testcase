@@ -1,0 +1,52 @@
+---
+settings:
+    package_name: com.tcl.common.weather                        #被测应用的包名
+    retry_times: 0                                              #脚本失败重试测试
+script_steps:
+  -
+   test_desc: 命令清除应用数据应用
+   test_action: outside_launch                                 #通过命令行调用
+   data: pm clear com.tcl.common.weather         #清空数据，启动loading页
+   test_sleep: 0 
+  -
+  # loading页到首页的显示
+  -
+   test_desc: 命令行进入应用程序
+   test_action: outside_launch                                 #通过命令行调用
+   data: am start com.tcl.common.weather/.activity.FirstActivity           #程序入口
+   test_sleep: 1000 
+  -
+   test_desc: 右键
+   test_action: send_key_event  #发送遥控器按键
+   data: right                  #键值
+   test_sleep: 500 
+  -
+   test_desc: 打开截图开关
+   test_action: start_image_stream                                 #通过命令行调用
+   data: 100000         #10s
+  - 
+   test_desc: ok键
+   test_action: send_key_event  #发送遥控器按键
+   data: ok                  #键值
+   test_sleep: 500
+   tag: time1 
+  -
+   test_desc: 打开的页面时间
+   test_action: pixel_compare                                  #程序开启像素比较，30s超时
+   data:
+    locations: #坐标值列表
+      -  [719, 357]
+      -  [697, 383]
+    rgbs:  #与坐标对应的rgb值列表
+      -  (224, 31, 34)
+      -  (224, 31, 34)
+   tag: time2
+   test_sleep: 0 
+  -
+   test_desc: 计算时间
+   test_action: compute   #时间计算
+   data: time2-time1
+
+ 
+
+

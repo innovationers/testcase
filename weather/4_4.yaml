@@ -7,7 +7,7 @@ script_steps:
   -
    test_desc: 打开截图开关
    test_action: start_image_stream                                 #通过命令行调用
-   data: 20000         #10s
+   data: 50000         #10s
 
 
   # loading页到首页的显示
@@ -31,13 +31,10 @@ script_steps:
    data:
     locations: #坐标值列表
       -  [90, 850]
-      -  [85, 990]
     rgbs:  #与坐标对应的rgb值列表
-     -  (235, 235, 237)
-     -  (227, 232, 228)
-   expectation: 3000      #期望像素比对获取的结果值
+     -  (235, 235, 235)
    tag: key4
-   test_sleep: 10     
+   test_sleep: 5000     
   # 天气详情的隐藏速度
   -
    test_desc: 按上键
@@ -50,24 +47,19 @@ script_steps:
    test_action: pixel_compare                                  #程序开启像素比较，30s超时
    data:
     locations: #坐标值列表
-      -  [1361, 55]
-      -  [88, 1031]
+      -  [89, 1036]
     rgbs:  #与坐标对应的rgb值列表
-      -  (204, 115, 49)
       -  (235, 235, 235)
-   expectation: 3000      #期望像素比对获取的结果值
    tag: key6
-   test_sleep: 10     
+   test_sleep: 5000     
   -
    test_desc: 计算时间
    test_action: compute   #时间计算
    data: key4-key3
-   expectation: 20000      #期望像素比对获取的结果值     
    test_sleep: 10     
   -
    test_desc: 计算时间
    test_action: compute   #时间计算
    data: key6-key5
-   expectation: 20000      #期望像素比对获取的结果值     
 
 

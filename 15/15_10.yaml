@@ -1,0 +1,59 @@
+---
+settings:
+    package_name:  com.tcl.vod  #被测应用的包名
+    retry_times: 0                 #脚本失败重试测试
+    default_test_sleep: 1000
+script_steps:
+  -
+    test_desc: 命令行强行停止应用
+    test_action: outside_launch                   #通过命令行调用
+    data: am force-stop  com.tcl.vod         #强行停止应用
+    test_sleep: 300
+  -
+    test_desc: 命令行进入vod列表,打开列表页
+    test_action: outside_launch  #通过命令行调用
+    data: am start -a com.tcl.vod.action.videosort --es channe_id movie --es channe_name MOIVE #程序入口
+    test_sleep: 20000
+  -
+    test_desc: 上键
+    test_action: send_key_event  #发送遥控器按键
+    data: up                    #键值
+    test_sleep: 1000               #键值当前操作结束后等待时间
+  -
+    test_desc: 上键
+    test_action: send_key_event  #发送遥控器按键
+    data: up                    #键值
+    test_sleep: 1000               #键值当前操作结束后等待时间
+  -
+    test_desc: 打开采集器视频流检测  #当前步骤描述
+    test_action: start_image_stream  #打开采集器视频流检测开关,必须在图片比对操作前打开
+    data: 20000                       #采集器图片采集时间，单位毫秒
+    test_sleep: 800
+  -
+    test_desc: ok键
+    test_action: send_key_event  #发送遥控器按键
+    data: ok                    #键值
+    test_sleep: 1000               #键值当前操作结束后等待时间
+    tag: time1
+  -
+    test_desc: 比较像素
+    test_action: pixel_compare   #程序开启像素比较，30s超时
+    data:
+     locations: #坐标值列表
+       -  [196, 394]
+       -  [322, 395]
+     rgbs:  #与坐标对应的rgb值列表
+       -  (9, 101, 248)
+       -  (0, 105, 249)
+    expectation: 5000      #期望像素比对获取的结果值，单位毫秒
+    tag: time2
+  -
+    test_desc: 计算时间
+    test_action: compute   #时间计算
+    data: time2-time1
+    expectation: 3000      #期望像素比对获取的结果值       
+  -
+    test_desc: 命令行强行停止应用
+    test_action: outside_launch                   #通过命令行调用
+    data: am force-stop  com.tcl.vod         #强行停止应用
+    test_sleep: 300

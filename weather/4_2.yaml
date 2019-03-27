@@ -7,28 +7,34 @@ script_steps:
   -
    test_desc: 打开截图开关
    test_action: start_image_stream                                 #通过命令行调用
-   data: 20000         #10s
-   
+   data: 90000         #10s
   -
-   test_desc: 命令行强行停止应用
+   test_desc: 命令清除应用数据应用
    test_action: outside_launch                                 #通过命令行调用
-   data: am force-stop com.tcl.common.weather         #强行停止应用
+   data: pm clear com.tcl.common.weather         #清空数据，启动loading页
    test_sleep: 0 
+  -
+  # loading页到首页的显示
   -
    test_desc: 命令行进入应用程序
    test_action: outside_launch                                 #通过命令行调用
-   data: am start com.tcl.common.weather/com.tcl.common.weather.activity.FirstActivity         #程序入口FirstActivity
+   data: am start com.tcl.common.weather           #程序入口
+   tag: time1
   -
    test_desc: 打开的页面时间
    test_action: pixel_compare                                  #程序开启像素比较，30s超时
    data:
     locations: #坐标值列表
-      -  [451, 538]
-      -  [1683, 715]
+      -  [573, 336]
+      -  [606, 332]
     rgbs:  #与坐标对应的rgb值列表
-     -  (32, 46, 57)
-     -  (42, 73, 75)
-   expectation: 3000      #期望像素比对获取的结果值
+      -  (227, 241, 252)
+      -  (230, 243, 252)
+   tag: time2
+  -
+   test_desc: 计算时间
+   test_action: compute   #时间计算
+   data: time2-time1
 
  
 

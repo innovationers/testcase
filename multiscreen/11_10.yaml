@@ -20,35 +20,35 @@ script_steps:
     optional: True
     test_sleep: 5000
   -
-    test_desc: 发送按键
-    test_action: outside_launch  #发送遥控器按键
-    data: 'sendevent /dev/input/event0: 0004 0004 0000f0c0'                   #键值
-    test_sleep: 0               #键值当前操作结束后等待时间
-  -
+  #   test_desc: 发送按键
+  #   test_action: outside_launch  #发送遥控器按键
+  #   data: 'sendevent /dev/input/event0: 0004 0004 0000f0c0'                   #键值
+  #   test_sleep: 0               #键值当前操作结束后等待时间
+  # -
     test_desc: 发送mute按下按键
     test_action: outside_launch  #发送遥控器按键
-    data: 'sendevent /dev/input/event0: 0001 0071 00000001'                   #键值
-    test_sleep: 0               #键值当前操作结束后等待时间
-  -
-    test_desc: 发送同步信号
-    test_action: outside_launch  #发送遥控器按键
-    data: 'sendevent /dev/input/event0: 0000 0000 00000000'                   #键值
+    data: "sendevent /dev/input/event0 1 113 1&sendevent /dev/input/event0 0 0 0"                   #键值
     test_sleep: 5000               #键值当前操作结束后等待时间
+  # -
+  #   test_desc: 发送同步信号
+  #   test_action: outside_launch  #发送遥控器按键
+  #   data: 'sendevent /dev/input/event0: 0000 0000 00000000'                   #键值
+  #   test_sleep: 5000               #键值当前操作结束后等待时间
   -
     test_desc: 发送mute抬起信号
     test_action: outside_launch  #发送遥控器按键
-    data: 'sendevent /dev/input/event0: 0001 0071 00000000'                   #键值
+    data: "sendevent /dev/input/event0 1 113 0&sendevent /dev/input/event0 0 0 0"                   #键值
     test_sleep: 0               #键值当前操作结束后等待时间
-  -
-    test_desc: 发送同步信号
-    test_action: outside_launch  #发送遥控器按键
-    data: 'sendevent /dev/input/event0: 0000 0000 00000000'                   #键值
-    test_sleep: 0               #键值当前操作结束后等待时间
+  # -
+  #   test_desc: 发送同步信号
+  #   test_action: outside_launch  #发送遥控器按键
+  #   data: 'sendevent /dev/input/event0: 0000 0000 00000000'                   #键值
+  #   test_sleep: 0               #键值当前操作结束后等待时间
   -
     test_desc: 发送按键
     test_action: send_key_event  #发送遥控器按键
     data: ok                   #键值
-    test_sleep: 0               #键值当前操作结束后等待时间
+    test_sleep: 1000               #键值当前操作结束后等待时间
     tag: key1    
   -
     test_desc: 开启像素比较
@@ -66,3 +66,8 @@ script_steps:
     test_desc: 计算时间
     test_action: compute   #时间计算
     data: key2-key1
+  -
+    test_desc: 命令行强行停止应用
+    test_action: outside_launch                   #通过命令行调用
+    data: am force-stop com.tcl.cyberui         #强行停止应用
+    test_sleep: 5000

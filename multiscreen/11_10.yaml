@@ -9,18 +9,23 @@ script_steps:
     test_action: start_image_stream  #打开采集器视频流检测开关,必须在图片比对操作前打开
     data: 25000                       #采集器图片采集时间，单位毫秒
   -
+    test_desc: 命令行强行停止应用
+    test_action: outside_launch                   #通过命令行调用
+    data: am force-stop com.tcl.MultiScreenInteraction_TV         #强行停止应用
+    test_sleep: 5000
+  -
     test_desc: 命令行进入应用程序
     test_action: outside_launch  #通过命令行调用
     data: am start com.tcl.MultiScreenInteraction_TV/com.tcl.multiscreeninteractiontv.MainActivity #程序入口
     optional: True
-    test_sleep: 3000 
+    test_sleep: 5000 
   -
     test_desc: 按键
     test_action: send_key_event  #发送遥控器按键
     data: ok                   #键值
     test_sleep: 0               #键值当前操作结束后等待时间
     tag: key1
-    test_sleep: 1000   
+    test_sleep: 2000   
   -
     test_desc: 开启像素比较
     test_action: pixel_compare   #程序开启像素比较，30s超时
@@ -31,10 +36,8 @@ script_steps:
      rgbs:  #与坐标对应的rgb值列表
        -  (233, 236, 253)
        -  (234, 231, 248)
-     compare_type: 1        #正向比较，坐标点的rgb值一致算通过
     tag: key2
   -
     test_desc: 计算时间
     test_action: compute   #时间计算
     data: key2-key1
-    expectation: 25000      #期望像素比对获取的结果值

@@ -7,7 +7,7 @@ script_steps:
   -
     test_desc: 命令行强行停止应用
     test_action: outside_launch                   #通过命令行调用
-    data: am force-stop com.tcl.cyberui         #强行停止应用
+    data: am force-stop com.tcl.MultiScreenInteraction_TV         #强行停止应用
     test_sleep: 5000
   -
     test_desc: 打开截图开关             #当前步骤描述

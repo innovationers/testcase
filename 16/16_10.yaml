@@ -12,7 +12,7 @@ script_steps:
   -
     test_desc: 命令进入历史收藏页
     test_action: outside_launch  #通过命令行调用
-    data: am start -n com.tcl.cyberui/com.tcl.cyberui.recents.MainActivity #程序入口
+    data: am start -n com.tcl.cyberui/com.tcl.cyberui.recents.MainActivity #程序入口
     test_sleep: 2000               #键值当前操作结束后等待时间
   -
     test_desc: 左键

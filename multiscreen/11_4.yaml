@@ -23,7 +23,7 @@ script_steps:
     test_action: outside_launch  #发送遥控器按键
     data: "sendevent /dev/input/event0 1 106 1&sendevent /dev/input/event0 0 0 0&sendevent /dev/input/event0 1 106 0&sendevent /dev/input/event0 0 0 0"    
     tag: key1               #键值
-    test_sleep: 1000
+    test_sleep: 200
   # -
   #   test_desc: 发送mute抬起信号
   #   test_action: outside_launch  #发送遥控器按键

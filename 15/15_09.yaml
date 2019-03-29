@@ -8,7 +8,7 @@ script_steps:
     test_desc: 命令行强行停止应用
     test_action: outside_launch                   #通过命令行调用
     data: am force-stop  com.tcl.vod         #强行停止应用
-    test_sleep: 1000
+    test_sleep: 300
   -
     test_desc: 命令行进入vod列表,打开列表页
     test_action: outside_launch  #通过命令行调用

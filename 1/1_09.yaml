@@ -13,34 +13,34 @@ script_steps:
     test_action: outside_launch  #通过命令行调用
     data: am start com.tcl.tliveplay/com.tcl.tliveplay.activitys.MainActivity #程序入口
     expectation: MainActivity   #可选操作，检测activity 名称，此字段不写默认调起成功    
-    test_sleep: 1000              #键值当前操作结束后等待时间
+    test_sleep: 5000              #键值当前操作结束后等待时间
   -
     test_desc: 下键
     test_action: send_key_event  #发送遥控器按键
     data: down                  #键值
-    test_sleep: 16000              #键值当前操作结束后等待时间    
+    test_sleep: 8000              #键值当前操作结束后等待时间    
   -
     test_desc: menu键
     test_action: send_key_event  #发送遥控器按键
     data: menu                     #键值
-    test_sleep: 2000   #键值当前操作结束后等待时间
+    test_sleep: 1000   #键值当前操作结束后等待时间
   -
     test_desc: 按右键操作
     test_action: send_key_event  #发送遥控器按键
     data: right                   #键值
-    test_sleep: 300  #键值当前操作结束后等待时间
+    test_sleep: 1000  #键值当前操作结束后等待时间
   -
     test_desc: right键
     test    _action: send_key_event  #发送遥控器按键
     data: right                   #键值
-    test_sleep: 200             #键值当前操作结束后等待时间
+    test_sleep: 1000             #键值当前操作结束后等待时间
   -
     test_desc: right键
     test_action: send_key_event  #发送遥控器按键
     data: right                   #键值
-    test_sleep: 200             #键值当前操作结束后等待时间
+    test_sleep: 1000             #键值当前操作结束后等待时间
   -
-    test_desc: 切换清晰度时视频起播1080P->720P          #当前步骤描述
+    test_desc: 切换清晰度时视频起播1080P->720P          #当前步骤描述.先切换到1080
     test_action: start_image_stream  #打开采集器视频流检测开关,必须在图片比对操作前打开
     data: 20000                      #采集器图片采集时间，单位毫秒
     test_sleep: 300                #键值当前操作结束后等待时间     

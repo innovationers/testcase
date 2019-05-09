@@ -33,16 +33,16 @@ script_steps:
     test_desc: home键
     test_action: send_key_event  #发送遥控器按键
     data: home                    #键值---home按键值必须是home，3无效
-    test_sleep: 1000               #键值当前操作结束后等待时间
+    test_sleep: 100               #键值当前操作结束后等待时间
     tag: time1
   -
     test_desc: 比较像素
     test_action: pixel_compare   #程序开启像素比较，30s超时
     data:
      locations: #坐标值列表
-       -  [112, 47]
+       -  [150, 161]
      rgbs:  #与坐标对应的rgb值列表
-       -  (245, 105, 10)
+       -  (226,225, 230)
     tag: time2
   -
     test_desc: 计算时间

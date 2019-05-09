@@ -29,9 +29,9 @@ script_steps:
     test_action: pixel_compare   #程序开启像素比较，30s超时
     data:
      locations: #坐标值列表
-       -  [98, 474]
+       -  [425, 194]
      rgbs:  #与坐标对应的rgb值列表
-       -  (0, 111, 255)
+       -  (231, 231, 241)
     tag: time2
   -
     test_desc: 计算时间

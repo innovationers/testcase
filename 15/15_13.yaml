@@ -23,23 +23,23 @@ script_steps:
     test_desc: 下键
     test_action: send_key_event  #发送遥控器按键
     data: down                    #键值
-    test_sleep: 1000               #键值当前操作结束后等待时间
+    test_sleep: 300               #键值当前操作结束后等待时间
     tag: time1
   -
     test_desc: 比较像素
     test_action: pixel_compare   #程序开启像素比较，30s超时
     data:
      locations: #坐标值列表
-       -  [1632, 300]
-     rgbs:  #与坐标对应的rgb值列表
-       -  (243, 231, 245)
-    expectation: 5000      #期望像素比对获取的结果值，单位毫秒
+       -  [1493, 726]
+     rgbs:  #与坐标对应的rgb值列表##注意该值每次都需要修改才能看出海报变化
+       -  (249, 39, 42)
+    expectation: 15000      #期望像素比对获取的结果值，单位毫秒.
     tag: time2
   -
     test_desc: 计算时间
     test_action: compute   #时间计算
     data: time2-time1
-    expectation: 3000      #期望像素比对获取的结果值       
+    expectation: 13000      #期望像素比对获取的结果值       
   -
     test_desc: 命令行强行停止应用
     test_action: outside_launch                   #通过命令行调用

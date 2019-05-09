@@ -53,13 +53,13 @@ script_steps:
        -  [625, 76]
      rgbs:  #与坐标对应的rgb值列表
        -  (245, 246, 250)
-    expectation: 5000      #期望像素比对获取的结果值，单位毫秒
+    expectation: 15000      #期望像素比对获取的结果值，单位毫秒
     tag: time2
   -
     test_desc: 计算时间
     test_action: compute   #时间计算
     data: time2-time1
-    expectation: 3000      #期望像素比对获取的结果值       
+    expectation: 13000      #期望像素比对获取的结果值       
   -
     test_desc: 命令行强行停止应用
     test_action: outside_launch                   #通过命令行调用

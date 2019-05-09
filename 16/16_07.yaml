@@ -23,16 +23,16 @@ script_steps:
     test_desc: 命令进入历史收藏页
     test_action: outside_launch  #通过命令行调用
     data: am start -n com.tcl.cyberui/com.tcl.cyberui.recents.MainActivity #程序入口
-    test_sleep: 2000               #键值当前操作结束后等待时间
+    test_sleep: 1000               #键值当前操作结束后等待时间
     tag: time1
   -
     test_desc: 比较像素
     test_action: pixel_compare   #程序开启像素比较，30s超时
     data:
      locations: #坐标值列表
-       -  [195, 440]
+       -  [1731, 344]
      rgbs:  #与坐标对应的rgb值列表
-       -  (250, 248, 253)
+       -  (178, 30, 16)
     tag: time2
   -
     test_desc: 计算时间

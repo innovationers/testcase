@@ -32,7 +32,7 @@ script_steps:
      locations: #坐标值列表
        -  [529, 136]
      rgbs:  #与坐标对应的rgb值列表
-       -  (217, 4, 62)
+       -  (214, 1, 57)
     tag: time2
   -
     test_desc: 计算时间

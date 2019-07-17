@@ -3,41 +3,45 @@ settings:
     package_name: com.tcl.common.weather                        #被测应用的包名
     retry_times: 0                                              #脚本失败重试测试
 script_steps:
-  # launcher到loading页显示
+  # 重启后launcher加载天气状态栏的速度
   -
    test_desc: 打开截图开关
    test_action: start_image_stream                                 #通过命令行调用
-   data: 20000         #10s
-   
+   data: 50000         #10s
   -
-   test_desc: 命令行清除应用数据
+   test_desc: 命令清除应用数据应用
    test_action: outside_launch                                 #通过命令行调用
-   data: pm clear com.tcl.common.weather         #清空数据，启动loading页
-   test_sleep: 1000
+   data: am force-stop com.tcl.common.weather         
+   test_sleep: 1000 
+  -
+   test_desc: 命令清除应用数据应用
+   test_action: outside_launch                                 #通过命令行调用
+   data: am force-stop com.tcl.cyberui        
+   test_sleep: 3000 
+  
+  # 进入launcher
   -
    test_desc: 命令行进入应用程序
    test_action: outside_launch                                 #通过命令行调用
-   data: am start com.tcl.common.weather/.MainActivity      #程序入口
-  # -
-  #  test_desc: 命令行进入应用程序
-  #  test_action: send_key_event  #发送遥控器按键
-  #  data: ok                   #键值
-  #  test_sleep: 10               #键值当前操作结束后等待时间
-  #  tag: key1
+   data: am start com.tcl.cyberui/com.tcl.cyberui.MainActivity           #程序入口
+   tag: time1
   -
    test_desc: 打开的页面时间
    test_action: pixel_compare                                  #程序开启像素比较，30s超时
    data:
     locations: #坐标值列表
-      -  [919, 538]
-      -  [959, 522]
-      -  [999, 538]
+      -  [1395, 59]
+      -  [1461, 51]
+      -  [1511, 49]
     rgbs:  #与坐标对应的rgb值列表
-     -  (51, 55, 58)
-     -  (91, 95, 98)
-     -  (140, 144, 147)
-    match_count: 1
-   expectation: 3000      #期望像素比对获取的结果值
+      -  (81, 80, 86)
+      -  (113, 112, 117)
+      -  (115, 114, 119)
+   tag: time2
+  -
+   test_desc: 计算时间
+   test_action: compute   #时间计算
+   data: time2-time1
 
  
 
